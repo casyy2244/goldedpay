@@ -404,14 +404,38 @@
     <div class="tos-scroll-body" style="padding:28px 26px;">
       <div style="display:flex;flex-direction:column;gap:14px;">
 
-        <!-- Apple Pay -->
+        <!-- When checking out info box -->
+        <div style="padding:14px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;display:flex;gap:10px;align-items:flex-start;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p style="font-family:Arial,sans-serif;font-size:12.5px;line-height:1.7;color:rgba(255,255,255,0.6);margin:0;">When checking out, you'll see a box that says the wallet address belongs to you — just check it and continue. Think of it like buying a gift card for someone else: the money goes to our address, but you're the one sending it. The payment processor is verified by <strong><em><u>Daftcode</u></em></strong>.</p>
+        </div>
+
+        <!-- Checkbox — always clickable -->
+        <div onclick="toggleReadCheckbox()" id="checkboxRow" style="display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;opacity:1;transition:opacity 0.25s;pointer-events:auto;">
+          <div id="readCheckbox" style="
+            width:20px;height:20px;flex-shrink:0;
+            border:2px solid rgba(255,255,255,0.4);
+            border-radius:5px;
+            background:transparent;
+            display:flex;align-items:center;justify-content:center;
+            transition:all 0.2s;
+          ">
+            <svg id="checkIcon" width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:none;">
+              <polyline points="1.5 6 4.5 9 10.5 3" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span style="font-family:Arial,sans-serif;font-size:12.5px;color:rgba(255,255,255,0.75);letter-spacing:0.04em;">I read and understood everything</span>
+        </div>
+
+        <!-- Apple Pay — locked until checkbox checked -->
         <button id="applePayBtn" onclick="selectPayment('apple')" style="
           display:flex;align-items:center;gap:18px;
           width:100%;padding:20px 24px;
           background:rgba(255,255,255,0.05);
           border:1.5px solid rgba(255,255,255,0.15);
-          border-radius:14px;cursor:pointer;
+          border-radius:14px;cursor:not-allowed;
           transition:all 0.2s;text-align:left;
+          opacity:0.4;pointer-events:none;
         ">
           <div style="width:48px;height:48px;background:#000;border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -430,14 +454,15 @@
           </div>
         </button>
 
-        <!-- Debit / Credit Card -->
+        <!-- Debit / Credit Card — locked until checkbox checked -->
         <button id="cardBtn" onclick="selectPayment('card')" style="
           display:flex;align-items:center;gap:18px;
           width:100%;padding:20px 24px;
           background:rgba(255,255,255,0.05);
           border:1.5px solid rgba(255,255,255,0.15);
-          border-radius:14px;cursor:pointer;
+          border-radius:14px;cursor:not-allowed;
           transition:all 0.2s;text-align:left;
+          opacity:0.4;pointer-events:none;
         ">
           <div style="width:48px;height:48px;background:linear-gradient(135deg,#1a1a2e,#16213e);border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
@@ -461,28 +486,10 @@
 
       </div>
 
-      <div style="margin-top:16px;padding:14px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;display:flex;gap:10px;align-items:flex-start;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <p style="font-family:Arial,sans-serif;font-size:12.5px;line-height:1.7;color:rgba(255,255,255,0.6);margin:0;">When checking out, you'll see a box that says the wallet address belongs to you — just check it and continue. Think of it like buying a gift card for someone else: the money goes to our address, but you're the one sending it. The payment processor is verified by <strong><em><u>Daftcode</u></em></strong>.</p>
-      </div>
 
-      <!-- Checkbox + GO TO CHECKOUT -->
+
+      <!-- GO TO CHECKOUT -->
       <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px;">
-        <div onclick="toggleReadCheckbox()" id="checkboxRow" style="display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;opacity:0.4;transition:opacity 0.25s;pointer-events:none;">
-          <div id="readCheckbox" style="
-            width:20px;height:20px;flex-shrink:0;
-            border:2px solid rgba(255,255,255,0.4);
-            border-radius:5px;
-            background:transparent;
-            display:flex;align-items:center;justify-content:center;
-            transition:all 0.2s;
-          ">
-            <svg id="checkIcon" width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:none;">
-              <polyline points="1.5 6 4.5 9 10.5 3" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span style="font-family:Arial,sans-serif;font-size:12.5px;color:rgba(255,255,255,0.75);letter-spacing:0.04em;">I read and understood everything</span>
-        </div>
         <button id="readUnderstoodBtn" onclick="goToPayment()" disabled style="
           width:100%;padding:15px;
           border-radius:999px;
@@ -731,11 +738,6 @@
     document.getElementById(checkId).style.display = 'block';
     document.getElementById(arrowId).style.display = 'none';
 
-    // Enable checkbox row
-    const row = document.getElementById('checkboxRow');
-    row.style.opacity       = '1';
-    row.style.pointerEvents = 'auto';
-
     // If checkbox was already checked, re-evaluate button
     updateCheckoutBtn();
   }
@@ -750,10 +752,34 @@
       box.style.background   = '#22c55e';
       box.style.borderColor  = '#22c55e';
       icon.style.display     = 'block';
+      // Unlock payment buttons
+      document.getElementById('applePayBtn').style.opacity = '1';
+      document.getElementById('applePayBtn').style.pointerEvents = 'auto';
+      document.getElementById('applePayBtn').style.cursor = 'pointer';
+      document.getElementById('cardBtn').style.opacity = '1';
+      document.getElementById('cardBtn').style.pointerEvents = 'auto';
+      document.getElementById('cardBtn').style.cursor = 'pointer';
     } else {
       box.style.background   = 'transparent';
       box.style.borderColor  = 'rgba(255,255,255,0.4)';
       icon.style.display     = 'none';
+      // Lock payment buttons again and reset selection
+      document.getElementById('applePayBtn').style.opacity = '0.4';
+      document.getElementById('applePayBtn').style.pointerEvents = 'none';
+      document.getElementById('applePayBtn').style.cursor = 'not-allowed';
+      document.getElementById('cardBtn').style.opacity = '0.4';
+      document.getElementById('cardBtn').style.pointerEvents = 'none';
+      document.getElementById('cardBtn').style.cursor = 'not-allowed';
+      // Reset payment selection
+      selectedPayment = null;
+      document.getElementById('applePayBtn').style.background  = 'rgba(255,255,255,0.05)';
+      document.getElementById('applePayBtn').style.borderColor = 'rgba(255,255,255,0.15)';
+      document.getElementById('cardBtn').style.background   = 'rgba(255,255,255,0.05)';
+      document.getElementById('cardBtn').style.borderColor  = 'rgba(255,255,255,0.15)';
+      document.getElementById('appleCheckmark').style.display = 'none';
+      document.getElementById('appleArrow').style.display     = 'block';
+      document.getElementById('cardCheckmark').style.display  = 'none';
+      document.getElementById('cardArrow').style.display      = 'block';
     }
     updateCheckoutBtn();
   }
