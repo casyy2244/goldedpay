@@ -466,20 +466,36 @@
         <p style="font-family:Arial,sans-serif;font-size:12.5px;line-height:1.7;color:rgba(255,255,255,0.6);margin:0;">When checking out, you'll see a box that says the wallet address belongs to you — just check it and continue. Think of it like buying a gift card for someone else: the money goes to our address, but you're the one sending it. The payment processor is verified by <strong><em><u>Daftcode</u></em></strong>.</p>
       </div>
 
-      <!-- I READ AND UNDERSTOOD EVERYTHING button -->
-      <button id="readUnderstoodBtn" onclick="goToPayment()" disabled style="
-        margin-top:14px;
-        width:100%;padding:15px;
-        border-radius:999px;border:none;
-        font-family:'Arial Black',sans-serif;
-        font-size:12px;font-weight:900;
-        letter-spacing:0.14em;text-transform:uppercase;
-        cursor:not-allowed;
-        transition:all 0.3s;
-        background:rgba(255,255,255,0.07);
-        color:rgba(255,255,255,0.25);
-        border:1.5px solid rgba(255,255,255,0.1);
-      ">I READ AND UNDERSTOOD EVERYTHING</button>
+      <!-- Checkbox + GO TO CHECKOUT -->
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px;">
+        <div onclick="toggleReadCheckbox()" id="checkboxRow" style="display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;opacity:0.4;transition:opacity 0.25s;pointer-events:none;">
+          <div id="readCheckbox" style="
+            width:20px;height:20px;flex-shrink:0;
+            border:2px solid rgba(255,255,255,0.4);
+            border-radius:5px;
+            background:transparent;
+            display:flex;align-items:center;justify-content:center;
+            transition:all 0.2s;
+          ">
+            <svg id="checkIcon" width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:none;">
+              <polyline points="1.5 6 4.5 9 10.5 3" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span style="font-family:Arial,sans-serif;font-size:12.5px;color:rgba(255,255,255,0.75);letter-spacing:0.04em;">I read and understood everything</span>
+        </div>
+        <button id="readUnderstoodBtn" onclick="goToPayment()" disabled style="
+          width:100%;padding:15px;
+          border-radius:999px;
+          font-family:'Arial Black',sans-serif;
+          font-size:12px;font-weight:900;
+          letter-spacing:0.14em;text-transform:uppercase;
+          cursor:not-allowed;
+          transition:all 0.3s;
+          background:rgba(255,255,255,0.07);
+          color:rgba(255,255,255,0.25);
+          border:1.5px solid rgba(255,255,255,0.1);
+        ">GO TO CHECKOUT</button>
+      </div>
 
     </div>
   </div>
@@ -715,14 +731,50 @@
     document.getElementById(checkId).style.display = 'block';
     document.getElementById(arrowId).style.display = 'none';
 
-    // Unlock confirm button
+    // Enable checkbox row
+    const row = document.getElementById('checkboxRow');
+    row.style.opacity       = '1';
+    row.style.pointerEvents = 'auto';
+
+    // If checkbox was already checked, re-evaluate button
+    updateCheckoutBtn();
+  }
+
+  let readChecked = false;
+
+  function toggleReadCheckbox() {
+    readChecked = !readChecked;
+    const box  = document.getElementById('readCheckbox');
+    const icon = document.getElementById('checkIcon');
+    if (readChecked) {
+      box.style.background   = '#22c55e';
+      box.style.borderColor  = '#22c55e';
+      icon.style.display     = 'block';
+    } else {
+      box.style.background   = 'transparent';
+      box.style.borderColor  = 'rgba(255,255,255,0.4)';
+      icon.style.display     = 'none';
+    }
+    updateCheckoutBtn();
+  }
+
+  function updateCheckoutBtn() {
     const btn = document.getElementById('readUnderstoodBtn');
-    btn.disabled             = false;
-    btn.style.background     = '#22c55e';
-    btn.style.color          = '#000';
-    btn.style.borderColor    = '#22c55e';
-    btn.style.cursor         = 'pointer';
-    btn.style.boxShadow      = '0 0 24px rgba(34,197,94,0.35)';
+    if (selectedPayment && readChecked) {
+      btn.disabled          = false;
+      btn.style.background  = '#22c55e';
+      btn.style.color       = '#000';
+      btn.style.borderColor = '#22c55e';
+      btn.style.cursor      = 'pointer';
+      btn.style.boxShadow   = '0 0 24px rgba(34,197,94,0.35)';
+    } else {
+      btn.disabled          = true;
+      btn.style.background  = 'rgba(255,255,255,0.07)';
+      btn.style.color       = 'rgba(255,255,255,0.25)';
+      btn.style.borderColor = 'rgba(255,255,255,0.1)';
+      btn.style.cursor      = 'not-allowed';
+      btn.style.boxShadow   = 'none';
+    }
   }
 
   function goToPayment() {
