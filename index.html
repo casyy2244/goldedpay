@@ -336,16 +336,16 @@
 
   <img src="123213213.png" style="max-width:540px; max-height:320px; object-fit:contain;">
 
-  <!-- JOIN NOW button opens payment info popup -->
+  <!-- JOIN NOW button -->
   <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-    <button class="join-btn" id="joinNowBtn">
+    <a class="join-btn" href="https://buy.stripe.com/8x26oGajHgWX5UL381dwc0v" target="_blank" rel="noopener noreferrer">
       JOIN NOW
       <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:2px solid currentColor;flex-shrink:0;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13">
           <path d="M5 12h14M13 6l6 6-6 6"/>
         </svg>
       </span>
-    </button>
+    </a>
   </div>
 
   <div class="footer-links">
@@ -354,159 +354,9 @@
   </div>
 </div>
 
-<!-- TOS POPUP -->
-<div class="tos-overlay" id="tosOverlay" style="display:none;">
-  <div class="tos-modal">
-
-    <div class="tos-progress-bar">
-      <div class="tos-progress-fill" id="tosProgress" style="width: 100%;"></div>
-    </div>
-
-    <div class="tos-header">
-      <div class="tos-header-text">
-        <h2>IMPORTANT MESSAGE</h2>
-        <p>Last Updated: May 2026</p>
-      </div>
-      <button id="tosCloseBtn" style="background:none;border:none;color:rgba(255,255,255,0.45);font-size:22px;cursor:pointer;padding:0 0 0 12px;line-height:1;">&times;</button>
-    </div>
-
-    <div class="tos-scroll-body" id="tosScrollBody">
-
-      <div class="tos-section" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:18px 20px;margin-bottom:28px;">
-        <p>You pay with your <strong><em>card or Apple Pay</em></strong>, which automatically purchases crypto through a secure provider and sends it straight to us — and you get your product instantly, <strong><u>no crypto knowledge needed.</u></strong></p>
-      </div>
-
-      <div class="tos-sentinel" id="tosSentinel"></div>
-    </div>
-
-    <div class="tos-footer">
-      <button class="tos-accept-btn unlocked" id="tosAcceptBtn">
-        OK
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<!-- PAYMENT METHOD POPUP -->
-<div class="tos-overlay" id="paymentOverlay" style="display:none;">
-  <div class="tos-modal">
-    <div class="tos-progress-bar">
-      <div class="tos-progress-fill" style="width:100%;"></div>
-    </div>
-    <div class="tos-header">
-      <div class="tos-header-text">
-        <h2>SELECT PAYMENT</h2>
-        <p>Choose your payment method</p>
-      </div>
-      <button onclick="closeModal('paymentOverlay')" style="background:none;border:none;color:rgba(255,255,255,0.45);font-size:22px;cursor:pointer;padding:0 0 0 12px;line-height:1;">&times;</button>
-    </div>
-    <div class="tos-scroll-body" style="padding:28px 26px;">
-      <div style="display:flex;flex-direction:column;gap:14px;">
-
-        <!-- When checking out info box -->
-        <div style="padding:14px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;display:flex;gap:10px;align-items:flex-start;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <p style="font-family:Arial,sans-serif;font-size:12.5px;line-height:1.7;color:rgba(255,255,255,0.6);margin:0;">When checking out, you'll see a box that says the wallet address belongs to you — just check it and continue. Think of it like buying a gift card for someone else: the money goes to our address, but you're the one sending it. The payment processor is verified by <strong><em><u>Daftcode</u></em></strong>.</p>
-        </div>
-
-        <!-- Checkbox — always clickable -->
-        <div onclick="toggleReadCheckbox()" id="checkboxRow" style="display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;opacity:1;transition:opacity 0.25s;pointer-events:auto;">
-          <div id="readCheckbox" style="
-            width:20px;height:20px;flex-shrink:0;
-            border:2px solid rgba(255,255,255,0.4);
-            border-radius:5px;
-            background:transparent;
-            display:flex;align-items:center;justify-content:center;
-            transition:all 0.2s;
-          ">
-            <svg id="checkIcon" width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:none;">
-              <polyline points="1.5 6 4.5 9 10.5 3" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span style="font-family:Arial,sans-serif;font-size:12.5px;color:rgba(255,255,255,0.75);letter-spacing:0.04em;">I read and understood everything</span>
-        </div>
-
-        <!-- Apple Pay — locked until checkbox checked -->
-        <button id="applePayBtn" onclick="selectPayment('apple')" style="
-          display:flex;align-items:center;gap:18px;
-          width:100%;padding:20px 24px;
-          background:rgba(255,255,255,0.05);
-          border:1.5px solid rgba(255,255,255,0.15);
-          border-radius:14px;cursor:not-allowed;
-          transition:all 0.2s;text-align:left;
-          opacity:0.4;pointer-events:none;
-        ">
-          <div style="width:48px;height:48px;background:#000;border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.37 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-family:'Arial Black',sans-serif;font-size:15px;font-weight:900;color:#fff;letter-spacing:0.05em;">Apple Pay</div>
-            <div style="font-family:Arial,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);margin-top:3px;">Fast & secure checkout</div>
-          </div>
-          <div id="appleCheckmark" style="margin-left:auto;display:none;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(34,197,94,0.15)" stroke="#22c55e"/><polyline points="7 12 10.5 15.5 17 9"/></svg>
-          </div>
-          <div id="appleArrow" style="margin-left:auto;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </div>
-        </button>
-
-        <!-- Debit / Credit Card — locked until checkbox checked -->
-        <button id="cardBtn" onclick="selectPayment('card')" style="
-          display:flex;align-items:center;gap:18px;
-          width:100%;padding:20px 24px;
-          background:rgba(255,255,255,0.05);
-          border:1.5px solid rgba(255,255,255,0.15);
-          border-radius:14px;cursor:not-allowed;
-          transition:all 0.2s;text-align:left;
-          opacity:0.4;pointer-events:none;
-        ">
-          <div style="width:48px;height:48px;background:linear-gradient(135deg,#1a1a2e,#16213e);border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-              <line x1="1" y1="10" x2="23" y2="10"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-family:'Arial Black',sans-serif;font-size:15px;font-weight:900;color:#fff;letter-spacing:0.05em;">Debit / Credit Card</div>
-            <div style="font-family:Arial,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);margin-top:3px;display:flex;align-items:center;gap:6px;">
-              Visa, Mastercard & more
-            </div>
-          </div>
-          <div id="cardCheckmark" style="margin-left:auto;display:none;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(34,197,94,0.15)" stroke="#22c55e"/><polyline points="7 12 10.5 15.5 17 9"/></svg>
-          </div>
-          <div id="cardArrow" style="margin-left:auto;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </div>
-        </button>
-
-      </div>
 
 
 
-      <!-- GO TO CHECKOUT -->
-      <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px;">
-        <button id="readUnderstoodBtn" onclick="goToPayment()" disabled style="
-          width:100%;padding:15px;
-          border-radius:999px;
-          font-family:'Arial Black',sans-serif;
-          font-size:12px;font-weight:900;
-          letter-spacing:0.14em;text-transform:uppercase;
-          cursor:not-allowed;
-          transition:all 0.3s;
-          background:rgba(255,255,255,0.07);
-          color:rgba(255,255,255,0.25);
-          border:1.5px solid rgba(255,255,255,0.1);
-        ">GO TO CHECKOUT</button>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 <!-- TERMS POPUP -->
 <div class="tos-overlay" id="termsOverlay" style="display:none;">
@@ -683,146 +533,7 @@
   window.addEventListener('resize', init);
   requestAnimationFrame(draw);
 
-  /* ── TOS LOGIC ── */
-  const tosOverlay   = document.getElementById('tosOverlay');
-  const acceptBtn    = document.getElementById('tosAcceptBtn');
-  const mainContent  = document.getElementById('mainContent');
-
-  function openTosPopup() {
-    tosOverlay.style.display = 'flex';
-    tosOverlay.style.opacity = '1';
-    mainContent.classList.add('blurred');
-  }
-
-  function closeTosPopup() {
-    tosOverlay.style.transition = 'opacity 0.35s ease';
-    tosOverlay.style.opacity = '0';
-    mainContent.classList.remove('blurred');
-    setTimeout(() => {
-      tosOverlay.style.display = 'none';
-      tosOverlay.style.opacity = '1';
-    }, 370);
-  }
-
-  // JOIN NOW button → her zaman popup açar
-  document.getElementById('joinNowBtn').addEventListener('click', () => {
-    openTosPopup();
-  });
-
-  const PAYMENT_URL = 'https://buy.kryptonim.com/redirect-form?gdata=dRr60eWt6HHOj4%2BEmBGpfApw58W0QT9%2BDW4gtTRztp01NqQ%2BkWTBtaC%2BYlvEFvrJ6LMk4yOFRaqJaoJCVKCVTbVvxOcZspVEC82B5mRvl8AKTHabLpD2KOykX0boSonoRGC8TQdImEK59QrJkf7WBjTZVcwvPZArIrpGhQGSBZQJ5Ohk3Dcnnhd5X9SgnvZ%2BbpKyS5TRBuraZGc9jrZJ32AHiQwcpjWAReD7bVpmmsPom3Y3%2F%2FfPccM75u7F%2FIIkc8Ei5uFoIQVsM8sOMKsC3tn41RU%2BOT%2BvIj8B%2BTbewyzRH8xRETA3rfw%2FlbYifXlgGfM%2B2L4Wzwe5grMYl1lwjCRyrzlhptURx8PhkgHhfO2%2FlFx1%2FX7ZMYliVh2oC21Fua%2FtqrSwIvtrZl4bV8I87KcinSCIJW5vLEivkRyc1vBcdFIZLs7VY13eaVyvzKJtCVhXyiNQvP%2BfjU9%2BG0O29E8t50iEEVGPawiLVl9AW5n1cXExF9PwtmpyH542XwynpwyP3euiMH%2F4nhLWJCF6YC7ZeeHjsr25q9lJJ5NUAasstlPmGejYOAvjfr8aH8LMnlExiIs0MouT8CunB6fqs7NGX1B%2F2U7XxIrwwaHzvq7pAkEMUy6PM%2F2VgkyUI7zKTI6QVl0Bh2clRjUReNFycekkuqM5PkliJ0apW%2Ftbbl0kpT45Y24asg99IBT24KcI0zFhBvaY1nv3KCgIm5FsBwW03zK18AjVHXWGfsWy6GOrEx0f8%2B11bfgnVw1Ba4VaEZMNbvkxjvEokLOdcPq4jDRjxQAOPqrBi2%2B4xLr7xXVBJLVbDeKxbhdmJoxj3pHoILaPCE48thfKGERLfmKXaw0Soo3cPWEmtB3M1LYcOvrVWqfbr2AMjdqJppoXYAVTlXns7t%2B9N%2BgVdFev%2BWrGUJSndP7yce9PFhNnsfHgRkqpbAQhPVaejID5iBukRmiurAMAF0AxYmw7pwrxrb9LkwZnEr0UKp9lPaaSgNbgniXwyWPO6n%2BYM0Ygq30F4QDIs2%2BYAer%2FfPvw%2FtIyrlaWvPdQnSritt%2Bs1Q6gvCT5U71hpqbQXDTlekbrYQoGWI9ZjNbwuS0505ApWrOPJpcs5IVUVVGwx1uyI2k2GWkmdAVNev26QnFqe8i9hU1yGqcNpXBBpvN170CDX7lhWJfOUikoX2DR39yPY7Vv0Q%2FtrVNb4rn9etUTZnoGqlm5d95NMHwoSr2d7YknPoFksE98cG7qlBsgX1ACed%2B8%2FiHklFHRw8DrpCbxHt6vyupfv%2BU98kDSQLtKa8MqzJNUa08kCvfprP198vjophCtfluYul9b4aRJX0lf2yN1YyyNdw5TpvTjCj%2FERCqraykDxB02Yw%3D%3D&m=t32IJwWW&blockchain=Polygon';
-
-  let selectedPayment = null;
-
-  function selectPayment(method) {
-    selectedPayment = method;
-
-    const appleBtn = document.getElementById('applePayBtn');
-    const cardBtn  = document.getElementById('cardBtn');
-
-    // Reset both
-    appleBtn.style.background  = 'rgba(255,255,255,0.05)';
-    appleBtn.style.borderColor = 'rgba(255,255,255,0.15)';
-    cardBtn.style.background   = 'rgba(255,255,255,0.05)';
-    cardBtn.style.borderColor  = 'rgba(255,255,255,0.15)';
-    document.getElementById('appleCheckmark').style.display = 'none';
-    document.getElementById('appleArrow').style.display     = 'block';
-    document.getElementById('cardCheckmark').style.display  = 'none';
-    document.getElementById('cardArrow').style.display      = 'block';
-
-    // Highlight selected
-    const active  = method === 'apple' ? appleBtn : cardBtn;
-    const checkId = method === 'apple' ? 'appleCheckmark' : 'cardCheckmark';
-    const arrowId = method === 'apple' ? 'appleArrow'     : 'cardArrow';
-    active.style.background  = 'rgba(34,197,94,0.1)';
-    active.style.borderColor = '#22c55e';
-    document.getElementById(checkId).style.display = 'block';
-    document.getElementById(arrowId).style.display = 'none';
-
-    // If checkbox was already checked, re-evaluate button
-    updateCheckoutBtn();
-  }
-
-  let readChecked = false;
-
-  function toggleReadCheckbox() {
-    readChecked = !readChecked;
-    const box  = document.getElementById('readCheckbox');
-    const icon = document.getElementById('checkIcon');
-    if (readChecked) {
-      box.style.background   = '#22c55e';
-      box.style.borderColor  = '#22c55e';
-      icon.style.display     = 'block';
-      // Unlock payment buttons
-      document.getElementById('applePayBtn').style.opacity = '1';
-      document.getElementById('applePayBtn').style.pointerEvents = 'auto';
-      document.getElementById('applePayBtn').style.cursor = 'pointer';
-      document.getElementById('cardBtn').style.opacity = '1';
-      document.getElementById('cardBtn').style.pointerEvents = 'auto';
-      document.getElementById('cardBtn').style.cursor = 'pointer';
-    } else {
-      box.style.background   = 'transparent';
-      box.style.borderColor  = 'rgba(255,255,255,0.4)';
-      icon.style.display     = 'none';
-      // Lock payment buttons again and reset selection
-      document.getElementById('applePayBtn').style.opacity = '0.4';
-      document.getElementById('applePayBtn').style.pointerEvents = 'none';
-      document.getElementById('applePayBtn').style.cursor = 'not-allowed';
-      document.getElementById('cardBtn').style.opacity = '0.4';
-      document.getElementById('cardBtn').style.pointerEvents = 'none';
-      document.getElementById('cardBtn').style.cursor = 'not-allowed';
-      // Reset payment selection
-      selectedPayment = null;
-      document.getElementById('applePayBtn').style.background  = 'rgba(255,255,255,0.05)';
-      document.getElementById('applePayBtn').style.borderColor = 'rgba(255,255,255,0.15)';
-      document.getElementById('cardBtn').style.background   = 'rgba(255,255,255,0.05)';
-      document.getElementById('cardBtn').style.borderColor  = 'rgba(255,255,255,0.15)';
-      document.getElementById('appleCheckmark').style.display = 'none';
-      document.getElementById('appleArrow').style.display     = 'block';
-      document.getElementById('cardCheckmark').style.display  = 'none';
-      document.getElementById('cardArrow').style.display      = 'block';
-    }
-    updateCheckoutBtn();
-  }
-
-  function updateCheckoutBtn() {
-    const btn = document.getElementById('readUnderstoodBtn');
-    if (selectedPayment && readChecked) {
-      btn.disabled          = false;
-      btn.style.background  = '#22c55e';
-      btn.style.color       = '#000';
-      btn.style.borderColor = '#22c55e';
-      btn.style.cursor      = 'pointer';
-      btn.style.boxShadow   = '0 0 24px rgba(34,197,94,0.35)';
-    } else {
-      btn.disabled          = true;
-      btn.style.background  = 'rgba(255,255,255,0.07)';
-      btn.style.color       = 'rgba(255,255,255,0.25)';
-      btn.style.borderColor = 'rgba(255,255,255,0.1)';
-      btn.style.cursor      = 'not-allowed';
-      btn.style.boxShadow   = 'none';
-    }
-  }
-
-  function goToPayment() {
-    closeModal('paymentOverlay');
-    setTimeout(() => { window.open(PAYMENT_URL, '_blank'); }, 100);
-  }
-
-  // OK button → ilk popup kapat + ödeme seçim popup aç
-  acceptBtn.addEventListener('click', () => {
-    closeTosPopup();
-    setTimeout(() => {
-      document.getElementById('paymentOverlay').style.display = 'flex';
-      document.getElementById('paymentOverlay').style.opacity = '1';
-    }, 380);
-  });
-
-  // X button → sadece popup kapat, linke gitme
-  document.getElementById('tosCloseBtn').addEventListener('click', () => {
-    closeTosPopup();
-  });
-
-  // Terms & Privacy links
+  /* ── MODAL HELPERS (Terms & Privacy) ── */
   function openModal(id) {
     document.getElementById(id).style.display = 'flex';
     document.getElementById(id).style.opacity = '1';
