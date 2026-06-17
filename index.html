@@ -97,6 +97,55 @@
   .feature-icon{color:#2563eb;flex-shrink:0;margin-top:2px;}
   .divider{width:100%;height:1px;background:var(--divider);transition:background 0.3s;}
 
+  /* SECOND CARD ACCENT (Ultimate / one-time) */
+  .offer-card.accent-gold{
+    border-color:rgba(245,158,11,0.35);
+    box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 40px rgba(245,158,11,0.10);
+  }
+  [data-theme="light"] .offer-card.accent-gold{
+    box-shadow:0 20px 60px rgba(0,0,0,0.08),0 0 40px rgba(245,158,11,0.10);
+  }
+  .feature-icon-gold{color:#f59e0b;flex-shrink:0;margin-top:2px;}
+  .buy-btn-gold{
+    background:#f59e0b;color:#1a1200;
+    transition:all 0.2s ease;
+    box-shadow:0 0 24px rgba(245,158,11,0.4);
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;padding:16px;border-radius:12px;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:18px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;
+    text-decoration:none;cursor:pointer;border:none;
+  }
+  .buy-btn-gold:hover{background:#fbbf24;transform:translateY(-2px);box-shadow:0 6px 30px rgba(245,158,11,0.6);}
+  .buy-btn-gold:active{transform:translateY(0);}
+
+  .best-value-tag{
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+    background:#f59e0b;color:#1a1200;
+    font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:900;
+    letter-spacing:0.14em;text-transform:uppercase;
+    padding:5px 16px;border-radius:999px;
+    box-shadow:0 4px 16px rgba(245,158,11,0.45);
+    display:flex;align-items:center;gap:5px;z-index:20;white-space:nowrap;
+  }
+
+  .offers-grid{
+    display:grid;grid-template-columns:1fr;gap:28px;
+    align-items:start;
+  }
+  @media(min-width:860px){
+    .offers-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  .stripe-note{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    margin-top:36px;font-family:'Barlow Condensed',sans-serif;
+    font-size:12px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--text-muted);
+  }
+  .stripe-note svg{flex-shrink:0;color:#635bff;}
+  .stripe-wordmark{color:#635bff;font-weight:900;letter-spacing:0.02em;font-style:italic;}
+
   footer{border-top:1px solid var(--footer-border);background:var(--bg);transition:background 0.3s,border 0.3s;}
 
   .status-dot{
@@ -207,7 +256,7 @@
 </header>
 
 <!-- MAIN -->
-<main class="layer w-full max-w-5xl mx-auto px-4 py-10 md:py-16 flex-grow">
+<main class="layer w-full max-w-5xl mx-auto px-4 py-10 md:py-16 flex-grow" style="max-width:920px;">
 
   <div class="text-center mb-10 md:mb-14">
     <h1 style="font-size:clamp(44px,8vw,80px);font-weight:900;letter-spacing:-0.03em;line-height:1;text-transform:uppercase;margin-bottom:16px;">
@@ -218,41 +267,50 @@
     </p>
   </div>
 
-  <div class="flex justify-center">
-    <div class="offer-card rounded-3xl p-6 md:p-10 relative z-10" style="width:min(500px,100%);">
+  <div class="offers-grid" style="position:relative;">
+    <!-- CARD 1: WEEKLY VIP ACCESS -->
+    <div class="offer-card rounded-3xl p-6 md:p-10 relative z-10">
 
       <div style="margin-bottom:24px;">
-        <h2 style="font-size:clamp(22px,3vw,28px);font-weight:900;text-transform:uppercase;letter-spacing:0.02em;">Premium Access Pass</h2>
-        <div style="display:inline-flex;align-items:center;justify-content:center;margin-top:8px;margin-bottom:4px;padding:4px 12px;border:1px solid rgba(37,99,235,0.35);border-radius:999px;background:rgba(37,99,235,0.08);box-shadow:0 0 18px rgba(37,99,235,0.12);color:#2563eb;font-size:clamp(11px,1.7vw,13px);font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:0.14em;line-height:1;">One Time Payment</div>
+        <h2 style="font-size:clamp(20px,3vw,26px);font-weight:900;text-transform:uppercase;letter-spacing:0.02em;">VIP Access</h2>
+        <div style="display:inline-flex;align-items:center;justify-content:center;margin-top:8px;margin-bottom:4px;padding:4px 12px;border:1px solid rgba(37,99,235,0.35);border-radius:999px;background:rgba(37,99,235,0.08);box-shadow:0 0 18px rgba(37,99,235,0.12);color:#2563eb;font-size:clamp(11px,1.7vw,13px);font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:0.14em;line-height:1;">Weekly Membership</div>
         <div style="margin-top:0;display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;">
-          <span style="font-size:clamp(48px,7vw,64px);font-weight:900;letter-spacing:-0.03em;line-height:1;">$28.99</span>
-          <span class="price-strike" style="font-size:14px;font-weight:900;text-decoration:line-through;margin-bottom:8px;letter-spacing:0.1em;">$59.00</span>
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:5px 10px;">
-            <svg width="12" height="12" fill="none" stroke="#ef4444" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;animation:pulseDot 1.4s ease-in-out infinite;"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
-            <span id="countdown-timer" style="font-size:12px;font-weight:900;letter-spacing:0.12em;color:#ef4444;font-family:'Barlow Condensed',sans-serif;">03:00:00</span>
-          </div>
+          <span style="font-size:clamp(40px,6vw,52px);font-weight:900;letter-spacing:-0.03em;line-height:1;">$19.99</span>
+          <span style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;opacity:0.6;">/ week</span>
         </div>
-       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
-        
-      </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+          <span class="price-strike" style="font-size:13px;font-weight:900;text-decoration:line-through;letter-spacing:0.06em;">$40.00/week</span>
+          <span style="font-size:11px;font-weight:900;color:#2563eb;letter-spacing:0.06em;">50% OFF</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:10px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:5px 10px;width:fit-content;">
+          <svg width="12" height="12" fill="none" stroke="#ef4444" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;animation:pulseDot 1.4s ease-in-out infinite;"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
+          <span class="countdown-timer" style="font-size:12px;font-weight:900;letter-spacing:0.12em;color:#ef4444;font-family:'Barlow Condensed',sans-serif;">03:00:00</span>
+        </div>
       </div>
 
       <div class="divider" style="margin-bottom:24px;"></div>
 
-      <ul style="display:flex;flex-direction:column;gap:20px;margin-bottom:28px;">
+      <ul style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
 
+        <li style="display:flex;align-items:flex-start;gap:12px;">
+          <svg class="feature-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <div>
+            <span style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Instant access.</span>
+            <p class="feat-sub" style="font-size:11px;margin-top:2px;font-weight:700;">Verified automatically the second you join.</p>
+          </div>
+        </li>
         <li style="display:flex;align-items:flex-start;gap:12px;">
           <svg class="feature-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
           <div>
-            <span style="font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Most exclusive folders.</span>
+            <span style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Most exclusive folders.</span>
             <p class="feat-sub" style="font-size:11px;margin-top:2px;font-weight:700;">Instant access to all of our content.</p>
           </div>
         </li>
         <li style="display:flex;align-items:flex-start;gap:12px;">
           <svg class="feature-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           <div>
-            <span style="font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Instant delivery.</span>
-            <p class="feat-sub" style="font-size:11px;margin-top:2px;font-weight:700;">Access granted automatically via Discord within minutes of payment.</p>
+            <span style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Instant delivery.</span>
+            <p class="feat-sub" style="font-size:11px;margin-top:2px;font-weight:700;">Access granted automatically via Discord within minutes.</p>
           </div>
         </li>
       </ul>
@@ -262,23 +320,93 @@
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
 
-      <div style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:16px;">
-        <span class="feat-sub" style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;display:flex;align-items:center;gap:4px;">
-          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          Secure
-        </span>
-        <span class="feat-sub" style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;display:flex;align-items:center;gap:4px;">
-          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
-          Discreet
-        </span>
-        <span class="feat-sub" style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;display:flex;align-items:center;gap:4px;">
-          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          Instant
-        </span>
+      <div style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:6px;">
+        <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="feat-sub"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span class="feat-sub" style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;">Secure checkout</span>
+      </div>
+    </div>
+
+    <!-- CARD 2: ULTIMATE VIP — ONE-TIME -->
+    <div class="offer-card accent-gold rounded-3xl p-6 md:p-10 relative z-10" style="position:relative;">
+      <div class="best-value-tag">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.447a1 1 0 00-.364 1.118l1.287 3.957c.299.921-.755 1.688-1.539 1.118l-3.368-2.447a1 1 0 00-1.176 0l-3.368 2.447c-.783.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.285-3.957z"/></svg>
+        Best Value
+      </div>
+
+      <div style="margin-bottom:24px;">
+        <h2 style="font-size:clamp(20px,3vw,26px);font-weight:900;text-transform:uppercase;letter-spacing:0.02em;">Ultimate VIP — Forever</h2>
+        <div style="display:inline-flex;align-items:center;justify-content:center;margin-top:8px;margin-bottom:4px;padding:4px 12px;border:1px solid rgba(245,158,11,0.4);border-radius:999px;background:rgba(245,158,11,0.1);box-shadow:0 0 18px rgba(245,158,11,0.15);color:#f59e0b;font-size:clamp(11px,1.7vw,13px);font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:0.14em;line-height:1;">One Time Payment</div>
+        <div style="margin-top:0;display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;">
+          <span style="font-size:clamp(40px,6vw,52px);font-weight:900;letter-spacing:-0.03em;line-height:1;">$48.99</span>
+          <span style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;opacity:0.6;">one-time</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+          <span class="price-strike" style="font-size:13px;font-weight:900;text-decoration:line-through;letter-spacing:0.06em;">$89.99</span>
+          <span style="font-size:11px;font-weight:900;color:#f59e0b;letter-spacing:0.06em;">45% OFF</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:10px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:5px 10px;width:fit-content;">
+          <svg width="12" height="12" fill="none" stroke="#ef4444" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;animation:pulseDot 1.4s ease-in-out infinite;"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
+          <span class="countdown-timer" style="font-size:12px;font-weight:900;letter-spacing:0.12em;color:#ef4444;font-family:'Barlow Condensed',sans-serif;">03:00:00</span>
+        </div>
+      </div>
+
+      <div style="margin-bottom:24px;padding:14px 16px;border:1px solid rgba(245,158,11,0.3);border-radius:12px;background:rgba(245,158,11,0.06);display:flex;gap:10px;align-items:flex-start;">
+        <svg width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+        <span class="feat-sub" style="font-size:11px;font-weight:700;line-height:1.5;">One-time payment only. Stay VIP forever — no monthly or yearly renewals ever.</span>
+      </div>
+
+      <div class="divider" style="margin-bottom:24px;"></div>
+
+      <ul style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
+
+        <li style="display:flex;align-items:flex-start;gap:12px;">
+          <svg class="feature-icon-gold" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <div>
+            <span style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Instant access.</span>
+            <p class="feat-sub" style="font-size:11px;margin-top:2px;font-weight:700;">Verified automatically the second you join.</p>
+          </div>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;">
+          <svg class="feature-icon-gold" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 10-8 0v4h8z"/></svg>
+          <div>
+            <span style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Unlocked VIP — Forever.</span>
+            <p class="feat-sub" style="font-size:11px;margin-top:2px;font-weight:700;">Permanent access. No expiry, no renewals, ever.</p>
+          </div>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;">
+          <svg class="feature-icon-gold" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+          <div>
+            <span style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Most exclusive folders.</span>
+            <p class="feat-sub" style="font-size:11px;margin-top:2px;font-weight:700;">Instant access to all of our content.</p>
+          </div>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;">
+          <svg class="feature-icon-gold" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><circle cx="11" cy="11" r="7" stroke-linecap="round"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35"/></svg>
+          <div>
+            <span style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Custom requests.</span>
+            <p class="feat-sub" style="font-size:11px;margin-top:2px;font-weight:700;">Looking for something specific? We'll source it.</p>
+          </div>
+        </li>
+      </ul>
+
+      <a href="https://upgrade.chat/1500385908153909371" target="_blank" rel="noopener noreferrer" class="buy-btn-gold">
+        GET LIFETIME ACCESS
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+
+      <div style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:6px;">
+        <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="feat-sub"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span class="feat-sub" style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;">Secure checkout · one-time charge</span>
       </div>
     </div>
   </div>
+
+  <div class="stripe-note">
+    <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#635bff"/><path d="M14.8 13.4c0-.9.8-1.2 2-1.2 1.8 0 4 .5 5.8 1.5v-5.5c-1.9-.8-3.8-1.1-5.8-1.1-4.7 0-7.9 2.5-7.9 6.6 0 6.4 8.9 5.4 8.9 8.2 0 1.1-1 1.5-2.3 1.5-1.9 0-4.5-.8-6.4-1.9v5.6c2.1.9 4.2 1.3 6.4 1.3 4.9 0 8.1-2.4 8.1-6.5 0-6.9-9-5.6-9-8.5z" fill="#fff"/></svg>
+    <span>Secure payment via <span class="stripe-wordmark">Stripe</span></span>
+  </div>
 </main>
+
 
 <!-- FOOTER -->
 <footer class="layer w-full py-10 text-center">
@@ -377,9 +505,10 @@
     }
 
     function tickTimer(){
-      const el = document.getElementById('countdown-timer');
-      if(!el) return;
-      el.textContent = formatTime(getSecondsLeft());
+      const els = document.querySelectorAll('.countdown-timer');
+      if(!els.length) return;
+      const formatted = formatTime(getSecondsLeft());
+      els.forEach(el => el.textContent = formatted);
     }
 
     tickTimer();
@@ -388,10 +517,12 @@
 
   // SLOT COUNT
   window.addEventListener('DOMContentLoaded',()=>{
-    document.getElementById('slot-count').innerText=Math.floor(Math.random()*5)+3;
+    const el0=document.getElementById('slot-count');
+    if(el0) el0.innerText=Math.floor(Math.random()*5)+3;
   });
   setInterval(()=>{
     const el=document.getElementById('slot-count');
+    if(!el) return;
     let c=parseInt(el.innerText);
     if(c>2&&Math.random()>0.8)el.innerText=c-1;
   },20000);
